@@ -1,0 +1,16 @@
+What is Multus and calico?
+Multus is a meta CNI plugin that provides multiple network interface support to pods. For each interface, Multus delegates CNI calls to secondary CNI plugins 
+such as Calico, macvlan, etc
+
+Calico vs Istio
+CNI -> Service Mesh
+Read more.
+
+Openshift doesnt come with Service mesh by default. Use openshift service mesh if needed
+
+https://www.suse.com/c/rancher_blog/comparing-kubernetes-cni-providers-flannel-calico-canal-and-weave/
+
+
+CNI is a mandatory requirement for having a working Kubernetes cluster but service mesh is not. CNI primarily works at L4 layer whereas service mesh works at L7 layer. Although there might be some bits of overlapping in functionality between a CNI plugin and service mesh they don't completely replace each other.
+
+From <https://stackoverflow.com/questions/64614920/is-cni-still-needed-when-service-mesh-is-used-in-kubernetes> 
