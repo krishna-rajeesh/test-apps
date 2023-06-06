@@ -1,0 +1,58 @@
+Kubernetes Ingress is an API object that provides routing rules to manage external users' access to the services in a Kubernetes cluster, typically via HTTPS/HTTP. With Ingress, you can easily set up rules for routing traffic without creating a bunch of Load Balancers or exposing each service on the node
+
+
+We can expose an application via node port, and users can access it via "IP of the node with the exposed port number"
+If we have multiple pods with in the service, the service will take care of load balancing the connections.
+We can have the DNS to point to this node IP, and users can access the application with "domain name with the exposed port number"
+This can be difficult as the port number is in 30000 series.
+Now we can resolve this by having a proxy server which translates port 80 to part 30000 of the node. 
+
+In case of a cloud environment, we can expose the application as a load balancer service and not node port.
+In this case, Kubernetes will send a request to cloud provider to deploy the NLB. And cloud provider will automatically deploy the load balancer.
+And then the DNS can be pointed to the cloud provider load balancer IP or hostname.
+
+Now, what if we have multiple applications, we will need multiple load balancers and its expensive.
+
+This is where Ingress comes into picture.
+Ingress is like a Layer 7 load balancer built in to the cluster. We will need to install one of the ingress controllers like
+Nginx, HAProxy etc. on to our Kubernetes cluster.
+Note that, we still need one NLB provided by the Cloud provider, pointing to the IngressController.
+
+Install IngressController as a deployment, using the NGINX IngressController image for example
+Now expose the IngressController as a service with 80 & 443 for http, https accordingly.
+Now create ingress resources, which are rules to route your hostnames to the corresponding service names.
+Also configure the load balancer to point to the ingress service hostname/external-ip.
+
+
+Note:
+In case of Openshift, it uses HAProxy for IngressController, and is implemented as an operator.
+So create an IngressController in the openshift-ingress-controller namespace 
+and the operator takes care of creating the service in the openshift-ingress namespace.
+Make sure to mention the domain name & certificates in the IngressController.
+
+Now register the service's hostname with the NLB domain name
+#In case of IBM cloud
+ibmcloud oc nlb-dns create --cluster=slz-bian-workload-cluster --lb-host=c0504a3f-us-east.lb.appdomain.cloud  --nlb-subdomain=slz-bian-workload-cluster-a01ee4194ed985a1e32b1d96fd4ae346-0001.us-east.containers.appdomain.cloud
+
+Also in case of OpenShift, we do not need ingress, as routes will take care of this.
+All you need is expose your application via routes, like:-
+oc create route edge --service=demo2 --hostname=demo2.bian.fs-demo.biz 
+
+
+
+ibmcloud is load-balancers
+
+ibmcloud oc nlb-dns ls --cluster=slz-bian-workload-cluster
+
+oc get ingresscontrollers.operator.openshift.io -n openshift-ingress-operator
+
+oc get svc -n openshift-ingress
+
+
+
+
+
+
+
+
+
