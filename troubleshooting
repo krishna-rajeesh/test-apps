@@ -5,3 +5,22 @@ https://kubernetes.io/docs/concepts/cluster-administration/flow-control/
 
 
 https://aws.amazon.com/premiumsupport/knowledge-center/codebuild-docker-pull-image-error/
+
+
+Troubleshooting - Find openshift api server logs
+
+IBM ROKS troubleshooting
+https://cloud.ibm.com/docs/containers?topic=containers-service-arch
+https://cloud.ibm.com/docs/openshift?topic=openshift-service-architecture
+
+Openshift troubleshooting
+https://connect.redhat.com/en/blog/openshift-troubleshooting-resources
+
+https://docs.openshift.com/container-platform/4.10/security/audit-log-view.html
+
+Old but may be useful
+http://v1.uncontained.io/playbooks/troubleshooting/troubleshooting_guide.html
+
+ibm master proxy
+
+https://cloud.ibm.com/docs?tab=tutorials&tags=openshift&page=1&pageSize=20
