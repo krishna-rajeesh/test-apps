@@ -1,0 +1,25 @@
+FROM registry.access.redhat.com/ubi9/nodejs-16@sha256:1c015c86115262f366290f91a2387b64ce0695041db0dd3226b478836088e916
+
+USER root
+RUN yum update -y && yum upgrade -y
+RUN npm -v
+
+ENV APP_ROOT=/opts/customer-offer-sd-api
+WORKDIR ${APP_ROOT}
+
+
+ENV BPM_URL=https://customer-offer-sd-process-kieserver-customer-offer-sd.bian-coreless-df320be24f0424156040b8c0440947c1-0000.us-south.containers.appdomain.cloud \
+    BPM_CONTAINER_ID=CustomerOfferSD
+
+COPY ./ ./
+
+RUN npm install
+
+RUN chown -R 1001:0 ${APP_ROOT} && chmod -R u+rwx ${APP_ROOT} && \
+    chmod -R g=u ${APP_ROOT}
+
+USER 1001
+
+EXPOSE 1880
+
+CMD ["node", "."]
