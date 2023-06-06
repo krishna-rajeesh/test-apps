@@ -1,0 +1,24 @@
+FROM registry.access.redhat.com/ubi9/ubi-minimal
+MAINTAINER krishna.rajeesh@ie.ibm.com
+
+
+ENV APP_ROOT=/tm_bian_consumer_loan_service
+ENV API_TOKEN A000387318837637878429!Gf66EPuubSJ+M9D9trhfsAorg6tGSRtXnqbvlyqX5CSGWo12I1OX6M3OXFyU/it3fLilcvszEyqx2GZ13iZnrdIUENI=
+
+WORKDIR ${APP_ROOT}
+
+RUN microdnf update -y && microdnf install python3 -y; microdnf clean all -y
+
+COPY ${APP_ROOT}/requirements.txt requirements.txt
+COPY ${APP_ROOT}/ ./
+
+RUN microdnf install python3-pip -y && python3 -m pip install -r requirements.txt
+RUN touch error.log
+
+RUN chown -R 1001:0 ${APP_ROOT} && chmod -R u+rwx ${APP_ROOT} && \
+    chmod -R g=u ${APP_ROOT}
+
+USER 1001
+EXPOSE 5000
+
+CMD ["python3", "main.py"]
