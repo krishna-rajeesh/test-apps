@@ -1,0 +1,11 @@
+oc adm node-logs 10.40.10.4 --path=openshift-apiserver/audit.log | jq 'select(.user.username == "myusername")'
+
+Check and find when kenneth logged in
+
+
+Also check scopes scan status
+
+Also create proper group for Red Hat team and give permission for users. - Done
+
+
+oc get oauthaccesstokens  #active connections
