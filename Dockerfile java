@@ -1,0 +1,25 @@
+FROM maven AS build
+
+WORKDIR /app-build
+
+COPY . .
+
+ENV KAFKA_USER=user
+ENV KAFKA_PASSWORD=password
+RUN mvn clean package
+
+FROM registry.access.redhat.com/ubi9/ubi-minimal
+
+LABEL BASE_IMAGE="registry.access.redhat.com/ubi9/ubi-minimal"
+LABEL JAVA_VERSION="11"
+
+WORKDIR /app
+
+RUN microdnf install --nodocs java-11-openjdk-headless -y && microdnf clean all -y
+
+RUN microdnf update -y && microdnf upgrade -y
+
+COPY --from=build /app-build/coreless-poc/target/ /deployment
+
+ENTRYPOINT ["java","-jar","/deployment/quarkus-app/quarkus-run.jar"]
+
