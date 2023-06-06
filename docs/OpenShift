@@ -1,0 +1,32 @@
+How to install OpenShift 4 on Bare Metal 
+
+https://www.youtube.com/watch?v=d03xg2PKOPg
+https://www.youtube.com/watch?v=uBsilb4cuaI
+https://www.youtube.com/watch?v=gYnVPcc6oMs
+
+https://www.youtube.com/watch?v=9_LO6Zo370E
+https://www.youtube.com/watch?v=DdWCL4eE0vM
+
+
+https://docs.openshift.com/container-platform/4.11/installing/installing_bare_metal/installing-bare-metal.html
+https://access.redhat.com/solutions/6197381
+
+
+SDS
+
+https://medium.com/kubernetes-tutorials/software-defined-storage-solutions-for-kubernetes-76c2204cc173
+https://thenewstack.io/how-kubernetes-provides-networking-and-storage-to-applications/
+https://www.redhat.com/en/topics/data-storage/software-defined-storage
+
+https://www.opensourcerers.org/2022/11/14/how-to-install-openshift-data-foundation-odf-4-10-in-a-disconnected-or-air-gapped-vmware-cluster/
+
+Openshift editions
+https://www.redhat.com/en/technologies/cloud-computing/openshift/pricing
+https://www.redhat.com/en/resources/self-managed-openshift-sizing-subscription-guide
+https://www.redhat.com/en/technologies/cloud-computing/openshift/try-it?sc_cid=7013a0000026OQwAAM&gclid=CjwKCAjwsvujBhAXEiwA_UXnAMzM5JVPbNn4QoiQ0j3Mol6mKolHyP0HYSOsmXXlsue6ynJxv9aNIBoCL_cQAvD_BwE&gclsrc=aw.ds
+https://www.insight.com/en_US/shop/product/MW01624/RED+HAT+SOFTWARE/MW01624/Red-Hat-OpenShift-Platform-Plus---standard-subscription--1-year----1-2-sockets/
+
+Postgresql
+https://www.enterprisedb.com/products/plans-comparison
+odf
+https://marketplace.redhat.com/en-us/products/red-hat-openshift-data-foundation/pricing
